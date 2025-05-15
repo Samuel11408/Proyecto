@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Física - MRU</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Calculadora Física - MRU y Encuentro</h1>
+
+    <section id="mru">
+        <h2>Movimiento Rectilíneo Uniforme (MRU)</h2>
+        <label>
+            Velocidad:
+            <input type="number" id="velocidad">
+            <select id="unidadVelocidad">
+                <option value="m/s">m/s</option>
+                <option value="km/h">km/h</option>
+            </select>
+        </label>
+
+        <label>
+            Tiempo (Δt):
+            <input type="number" id="tiempo">
+            <select id="unidadTiempo">
+                <option value="s">segundos</option>
+                <option value="min">minutos</option>
+                <option value="h">horas</option>
+            </select>
+        </label>
+
+        <label>
+            Posición inicial:
+            <input type="number" id="posicionInicial">
+            <select id="unidadPosicion">
+                <option value="m">metros</option>
+                <option value="km">kilómetros</option>
+            </select>
+        </label>
+
+        <label>
+            Desplazamiento (Δx):
+            <input type="number" id="deltaX">
+            <select id="unidadDeltaX">
+                <option value="m">metros</option>
+                <option value="km">kilómetros</option>
+            </select>
+        </label>
+
+        <div class="botones">
+            <button onclick="calcularMRU()">Calcular MRU</button>
+            <button onclick="graficarMRU()">Graficar MRU</button>
+            <button onclick="resetearMRU()">Resetear</button>
+        </div>
+
+        <p id="resultadoMRU"></p>
+    </section>
+
+    <canvas id="graficaMRU" width="600" height="400"></canvas>
+
+    <div class="botones">
+        <button onclick="window.location.href='index.html'">Volver al inicio</button>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuentro entre dos objetos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Encuentro</h1>
+
+    <section id="encuentro">
+        <h2>Punto de Encuentro entre dos objetos</h2>
+
+        <label>
+            Velocidad del objeto 1:
+            <input type="number" id="velocidad1">
+            <select id="unidadVelocidad1">
+                <option value="m/s">m/s</option>
+                <option value="km/h">km/h</option>
+            </select>
+        </label>
+
+        <label>
+            Posición inicial del objeto 1:
+            <input type="number" id="posicion1">
+            <select id="unidadPosicion1">
+                <option value="m">m</option>
+                <option value="km">km</option>
+            </select>
+        </label>
+
+        <label>
+            Velocidad del objeto 2:
+            <input type="number" id="velocidad2">
+            <select id="unidadVelocidad2">
+                <option value="m/s">m/s</option>
+                <option value="km/h">km/h</option>
+            </select>
+        </label>
+
+        <label>
+            Posición inicial del objeto 2:
+            <input type="number" id="posicion2">
+            <select id="unidadPosicion2">
+                <option value="m">m</option>
+                <option value="km">km</option>
+            </select>
+        </label>
+
+        <div class="botones">
+            <button onclick="calcularEncuentro()">Calcular Encuentro</button>
+            <button onclick="graficarEncuentro()">Graficar Encuentro</button>
+            <button onclick="resetearEncuentro()">Resetear</button>
+
+        </div>
+
+        <p id="resultadoEncuentro"></p>
+    </section>
+
+    <canvas id="graficaEncuentro" width="600" height="400"></canvas>
+
+    <div class="botones">
+        <button onclick="window.location.href='index.html'">Volver al inicio</button>
+    </div>
+
+    <script src="scripts1.1.js"></script>
+</body>
+</html>
+    
+</body>
+</html>
