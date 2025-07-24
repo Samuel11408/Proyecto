@@ -102,8 +102,6 @@ function graficarVectores() {
         vectores.push({ x, y });
 
         const color = colores[i % colores.length];
-
-        // Dibuja el vector
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(x, -y);
@@ -111,7 +109,6 @@ function graficarVectores() {
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // Flecha del vector
         const angle = Math.atan2(-y, x);
         const arrowSize = 10;
         const tipX = x;
@@ -130,7 +127,6 @@ function graficarVectores() {
         ctx.fillStyle = color;
         ctx.fill();
 
-        // Etiqueta
         const offsetLabel = 15;
         const labelX = tipX + offsetLabel * Math.cos(angle);
         const labelY = tipY + offsetLabel * Math.sin(angle);
@@ -140,12 +136,10 @@ function graficarVectores() {
         ctx.fillText(`F${i + 1}`, labelX, labelY);
     }
 
-    // Dibujar el cuadradito en el centro (más grande)
-    const squareSize = 10;  // Tamaño más grande del cuadrado
+    const squareSize = 10; 
     ctx.fillStyle = 'black';
-    ctx.fillRect(-squareSize / 2, -squareSize / 2, squareSize, squareSize);  // Cuadrado en el centro
+    ctx.fillRect(-squareSize / 2, -squareSize / 2, squareSize, squareSize);
 
-    // Mostrar ángulos entre pares de vectores
     let resultadosHTML = "";
 
     for (let i = 0; i < vectores.length; i++) {
@@ -168,6 +162,5 @@ function graficarVectores() {
         }
     }
 
-    // Mostrar los resultados debajo del canvas
     document.getElementById("resultadosAngulos").innerHTML = resultadosHTML;
 }
