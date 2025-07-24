@@ -89,7 +89,6 @@ function calcularEncuentro() {
 }
 
 function graficarEncuentro() {
-    // 1) Lectura y conversión de datos
     let v1 = parseFloat(document.getElementById('velocidad1').value);
     let v2 = parseFloat(document.getElementById('velocidad2').value);
     let x1 = parseFloat(document.getElementById('posicion1').value);
@@ -108,19 +107,17 @@ function graficarEncuentro() {
     x1 = convertirPosicion(x1, unidadX1);
     x2 = convertirPosicion(x2, unidadX2);
 
-    // 2) Calculo del tiempo de encuentro
     const tEncuentro = (x2 - x1) / (v1 - v2);
     if (tEncuentro < 0) {
         alert("Los objetos no se cruzarán en el tiempo dado.");
         return;
     }
 
-    // 3) Inicializar (o destruir) la gráfica
     if (graficaEncuentro) graficaEncuentro.destroy();
     const ctx = document.getElementById('graficaEncuentro').getContext('2d');
 
     graficaEncuentro = new Chart(ctx, {
-        type: 'scatter',   // scatter + line tension para trazos suaves
+        type: 'scatter',
         data: {
             datasets: [
                 {
@@ -167,7 +164,6 @@ function graficarEncuentro() {
         }
     });
 
-    // 4) Animación: añadimos un punto cada tick
     const pasos = 100;
     let paso = 0;
     const intervalo = setInterval(() => {
@@ -175,21 +171,19 @@ function graficarEncuentro() {
         const y1 = x1 + v1 * t;
         const y2 = x2 + v2 * t;
 
-        // Añadimos un nuevo punto a cada dataset
         graficaEncuentro.data.datasets[0].data.push({ x: t, y: y1 });
         graficaEncuentro.data.datasets[1].data.push({ x: t, y: y2 });
-        graficaEncuentro.update('none'); // 'none' para sin animación interna
+        graficaEncuentro.update('none');
 
         paso++;
         if (paso > pasos) {
             clearInterval(intervalo);
-            // Marcamos el punto de encuentro al final
             graficaEncuentro.data.datasets[2].data.push({
                 x: tEncuentro,
                 y: x1 + v1 * tEncuentro
             });
             graficaEncuentro.update();
         }
-    }, 30); // cada 30 ms sale un nuevo punto
+    }, 30);
 }
 
