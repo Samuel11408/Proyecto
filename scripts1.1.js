@@ -98,18 +98,22 @@ function graficarEncuentro() {
     const unidadX1 = document.getElementById('unidadPosicion1').value;
     const unidadX2 = document.getElementById('unidadPosicion2').value;
 
+    const sentido1 = parseInt(document.getElementById('sentido1').value);
+    const sentido2 = parseInt(document.getElementById('sentido2').value);
+
     if ([v1, v2, x1, x2].some(isNaN)) {
-        alert("Faltan datos válidos para graficar.");
+        alert("Faltan datos válidos para graficar");
         return;
     }
-    v1 = convertirVelocidad(v1, unidadV1);
-    v2 = convertirVelocidad(v2, unidadV2);
+
+    v1 = convertirVelocidad(v1, unidadV1) * sentido1;
+    v2 = convertirVelocidad(v2, unidadV2) * sentido2;
     x1 = convertirPosicion(x1, unidadX1);
     x2 = convertirPosicion(x2, unidadX2);
 
     const tEncuentro = (x2 - x1) / (v1 - v2);
     if (tEncuentro < 0) {
-        alert("Los objetos no se cruzarán en el tiempo dado.");
+        alert("Los objetos no se van a cruzar");
         return;
     }
 
@@ -122,12 +126,11 @@ function graficarEncuentro() {
             datasets: [
                 {
                     label: 'Objeto 1',
-                    data: [], 
+                    data: [],
                     showLine: true,
                     borderColor: 'red',
                     borderWidth: 2,
-                    fill: false,
-                    tension: 0.1
+                    fill: false
                 },
                 {
                     label: 'Objeto 2',
@@ -135,8 +138,7 @@ function graficarEncuentro() {
                     showLine: true,
                     borderColor: 'green',
                     borderWidth: 2,
-                    fill: false,
-                    tension: 0.1
+                    fill: false
                 },
                 {
                     label: 'Encuentro',
@@ -155,7 +157,9 @@ function graficarEncuentro() {
                     title: { display: true, text: 'Tiempo (s)' }
                 },
                 y: {
-                    title: { display: true, text: 'Posición (m)' }
+                    title: { display: true, text: 'Posición (m)' },
+                    min: Math.min(x1, x2, x1 + v1 * tEncuentro, x2 + v2 * tEncuentro) - 50,
+                    max: Math.max(x1, x2, x1 + v1 * tEncuentro, x2 + v2 * tEncuentro) + 50
                 }
             },
             plugins: {
@@ -186,4 +190,6 @@ function graficarEncuentro() {
         }
     }, 30);
 }
+
+
 
